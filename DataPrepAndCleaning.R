@@ -90,6 +90,49 @@ names(merged_data)[names(merged_data) == "Team.x"] <- "Team_Code"
 names(merged_data)[names(merged_data) == "Team.y"] <- "Team_Name"
 colnames(merged_data)
 
+# rename abbreviated columns
+new_col_names <- c("Player",
+                   "Season",
+                   "Team_Code",
+                   "Games_Played",
+                   "Minutes_Played",
+                   "Field_Goals_Made",
+                   "Field_Goal_Attempts",
+                   "Three_Pointers_Made",
+                   "Three_Pointers_Attempts",
+                   "Free_Throws_Made",
+                   "Free_Throw_Attempts",
+                   "Turnovers",
+                   "Personal_Fouls",
+                   "Offensive_Rebounds",
+                   "Defensive_Rebounds",
+                   "All_Rebounds",
+                   "Assists",
+                   "Steals",
+                   "Blocks",
+                   "Total_Points_Made",
+                   "birth_year",
+                   "birth_month",
+                   "birth_date",
+                   "height",
+                   "height_cm",
+                   "weight",
+                   "weight_kg",
+                   "Position",
+                   "Team_Name",
+                   "Salary")
+colnames(merged_data) <- new_col_names
+colnames(merged_data)
+
+# Create some new columns ===================================
+merged_data$Free_Throw_Accuracy <- round(merged_data$Free_Throws_Made / merged_data$Free_Throw_Attempts, 2)
+merged_data$Field_Goal_Accuracy <- round(merged_data$Field_Goals_Made / merged_data$Field_Goal_Attempts, 2)
+merged_data$Three_Pointers_Accuracy <- round(merged_data$Three_Pointers_Made / merged_data$Three_Pointers_Attempts, 2)
+merged_data$avg_minutes_per_game <- round(merged_data$Minutes_Played / merged_data$Games_Played, 2)
+
+merged_data$Three_Pointers_Accuracy <- ifelse(is.nan(merged_data$Three_Pointers_Accuracy), 
+                                           0, merged_data$Three_Pointers_Accuracy)
+
 # Create csv file of merged data
 write.csv(merged_data, file = "merged_data.csv", row.names=F)
 
