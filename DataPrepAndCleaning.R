@@ -133,7 +133,17 @@ merged_data$avg_minutes_per_game <- round(merged_data$Minutes_Played / merged_da
 merged_data$Three_Pointers_Accuracy <- ifelse(is.nan(merged_data$Three_Pointers_Accuracy), 
                                            0, merged_data$Three_Pointers_Accuracy)
 
+merged_data$Cost_Per_Point <- round(merged_data$Salary / merged_data$Total_Points_Made, 2)
+
+
+
 # Create csv file of merged data
 write.csv(merged_data, file = "merged_data.csv", row.names=F)
+
+
+# # Finding which player had the lowest salary per total points made =========
+# min_cost_per_pt <- min(merged_data$Cost_Per_Point, na.rm = T)
+# most_cost_effective <- !is.na(merged_data$Cost_Per_Point) & merged_data$Cost_Per_Point == min_cost_per_pt
+# merged_data[most_cost_effective,]
 
 
