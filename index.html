@@ -9,8 +9,137 @@
 
 <body>
 
-    <h1>Hellow</h1>
-    <div id="container"></div>
+    <!-- Fixed Navigation Panel at the left side -->
+    <div id="navbar">
+        <div class="nav-link intro-nav"></div>
+        <div class="nav-link compare-nav"></div>
+        <div class="nav-link players-nav"></div>
+        <div class="nav-link teams-nav"></div>
+        <div class="nav-link sources-nav"></div>
+    </div>
+
+    <!-- Introduction Section -->
+    <div id="introduction-section">
+        <h1>Welcome</h1>
+        <p>
+            Brief explaination of visualizations.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Aperiam illum quibusdam eveniet dolorum architecto esse quis,
+            praesentium suscipit, deserunt quisquam accusamus totam!
+            Vitae doloremque fuga perferendis saepe amet porro autem.
+        </p>
+    </div>
+
+    <!-- Compare Trendlines Section -->
+
+    <div id="compare-trendlines-section">
+
+        <h2>Compare Player Trendlines</h2>
+
+        <!-- User Selections -->
+        <p>
+            Which player had more
+            <select name="" id="compare-trendlines-variable"></select>
+            over the years
+        </p>
+
+        <div class="player1-container">
+            <p>Player 1</p>
+            <input id="player1" type="text">
+        </div>
+
+        <div class="player2-container">
+            <p>Player 2</p>
+            <input id="player2" type="text">
+        </div>
+
+        <button id="update-trendlines-btn">Update Trendlines</button>
+
+        <!-- Visualization 1: Trendlines -->
+        <div id="vis-trendlines">
+            <svg>
+                <!-- x axis -->
+                <g></g>
+                <!-- y axis -->
+                <g></g>
+                <!-- line 1 -->
+                <g></g>
+                <!-- line 2 -->
+                <g></g>
+            </svg>
+        </div>
+
+    </div>
+
+    <!-- Player Ranks Section -->
+
+    <div id="player-ranks-section">
+
+        <h2>Player Ranks</h2>
+
+        <!-- User Selections -->
+        <p>
+            Who were the top 10 for
+            <select name="" id="player-ranks-variable"></select>
+            in the year
+            <select name="" id="player-ranks-year"></select>
+            ?
+        </p>
+
+        <!-- Visualization 2: Player Ranks-->
+        <div id="vis-players">
+            <svg>
+                <!-- x axis -->
+                <g></g>
+                <!-- y axis -->
+                <g></g>
+                <!-- bars -->
+                <rect></rect>
+            </svg>
+        </div>
+
+    </div>
+
+    <!-- Team Ranks Section -->
+
+    <div id="team-ranks-section">
+
+        <h2>Team Ranks</h2>
+
+        <!-- User Selections -->
+        <p>
+            How did all the teams rank for
+            <select name="" id="team-ranks-variable"></select>
+            in the year
+            <select name="" id="team-ranks-year"></select>
+            ?
+        </p>
+
+        <!-- Visualization 3: Team Ranks -->
+        <div id="vis-teams">
+            <svg>
+                <!-- x axis -->
+                <g></g>
+                <!-- y axis -->
+                <g></g>
+                <!-- bars -->
+                <rect></rect>
+            </svg>
+        </div>
+
+    </div>
+
+    <!-- Source Section -->
+    <div id="source-section">
+        <h1>Sources</h1>
+        <p>
+            Brief explaination of visualizations.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Aperiam illum quibusdam eveniet dolorum architecto esse quis,
+            praesentium suscipit, deserunt quisquam accusamus totam!
+            Vitae doloremque fuga perferendis saepe amet porro autem.
+        </p>
+    </div>
 
 
 
