@@ -153,14 +153,20 @@ let state = {
       filter(d => [state.player1, state.player2].includes(d.Player));
 
 
-  // // + UPDATE SCALE(S), if needed
-  // yScale.domain([0, d3.max(filteredData, d => d.population)])
+  // + UPDATE SCALE(S), if needed
+  yScale.domain(d3.extent(state.bothPlayersData, d => d.Games_Played))
+  xScale.domain(d3.extent(state.bothPlayersData, d => d.Year))
 
-  // // + UPDATE AXIS/AXES, if needed
-  // yAxisGroup
-  //   .transition()
-  //   .duration(1000)
-  //   .call(yAxis.scale(yScale))// need to udpate the scale
+  // + UPDATE AXIS/AXES, if needed
+  yAxisGroup
+    .transition()
+    .duration(1000)
+    .call(d3.axisLeft(yScale))// need to udpate the scale
+
+  xAxisGroup
+    .transition()
+    .duration(1000)
+    .call(d3.axisBottom(xScale))// need to udpate the scale
 
   // specify line generator function
   const lineGen = d3.line()
