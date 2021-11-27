@@ -20,8 +20,9 @@ let bothPlayersData;
 let state = {
     data: [],
     variable: "Games_Played",
-    player1: "Aaron Brooks",
-    player2: "Al-Farouq Aminu"
+    player1: "",
+    player2: "",
+    bothPlayersData: []
   };
   
   /* LOAD DATA */
@@ -64,22 +65,29 @@ let state = {
   // this will be run *one time* when the data finishes loading in
   function init() {
 
-    bothPlayersData = state.data.
+    const idx1 = Math.floor(state.data.length * Math.random());
+    const idx2 = Math.floor(state.data.length * Math.random());
+    state.player1 = state.data[idx1].Player;
+    state.player2 = state.data[idx2].Player;
+
+    state.bothPlayersData = state.data.
       filter(d => [state.player1, state.player2].includes(d.Player));
 
     // + SCALES
     xScale = d3.scaleLinear()
-      .domain(d3.extent(bothPlayersData, d => d.Year))
+      .domain(d3.extent(state.bothPlayersData, d => d.Year))
       .range([margin.left, width - margin.right]);
 
     yScale = d3.scaleLinear()
-      .domain(d3.extent(bothPlayersData, d => d.Games_Played))
+      .domain(d3.extent(state.bothPlayersData, d => d.Games_Played))
       .range([height - margin.bottom, margin.top])
       .nice();
   
     // + UI ELEMENT SETUP
     const selectDropMenu = d3.select("#compare-trendlines-variable");
     const selectUpdateBtn = d3.select("#update-trendlines-btn");
+    const selectPlayer1 = d3.select("#player1");
+    const selectPlayer2 = d3.select("#player2");
 
     const varNames = Object.keys(state.data[0]).slice(2);
 
@@ -94,8 +102,16 @@ let state = {
 
       const DOM_menu = document.getElementById("compare-trendlines-variable");
       const selectedOption = DOM_menu.options[DOM_menu.selectedIndex].value;
+      const DOM_player1 = document.getElementById("player1");
+      const player1Text = DOM_player1.value;
+      const DOM_player2 = document.getElementById("player2");
+      const player2Text = DOM_player2.value;
 
+      state.player1 = player1Text;
+      state.player2 = player2Text;
       state.variable = selectedOption;
+
+      draw();
     });
   
     // + CREATE SVG ELEMENT
@@ -133,8 +149,8 @@ let state = {
   // we call this every time there is an update to the data/state
   function draw() {
   // + FILTER DATA BASED ON STATE
-  const filteredData = state.data.
-    filter(d => [state.player1, state.player2].includes(d.Player));
+  state.bothPlayersData = state.data.
+      filter(d => [state.player1, state.player2].includes(d.Player));
 
 
   // // + UPDATE SCALE(S), if needed
@@ -152,8 +168,8 @@ let state = {
     .y(d => yScale(d.Games_Played))
 
   
-  const player1data = bothPlayersData.filter(d => d.Player === state.player1);
-  const player2data = bothPlayersData.filter(d => d.Player === state.player2);
+  const player1data = state.bothPlayersData.filter(d => d.Player === state.player1);
+  const player2data = state.bothPlayersData.filter(d => d.Player === state.player2);
 
   // + DRAW LINE AND/OR AREA
   svg.selectAll(".line1")
