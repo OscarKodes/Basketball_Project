@@ -8,12 +8,11 @@ const width = window.innerWidth * 0.7,
     right: 50
   };
 
+
 let svg;
 let xScale;
 let yScale;
-let xAxis, yAxis;
 let xAxisGroup, yAxisGroup;
-let bothPlayersData;
 
 /* APPLICATION STATE */
 let state = {
