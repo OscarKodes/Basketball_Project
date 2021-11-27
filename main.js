@@ -6,8 +6,7 @@ const width = window.innerWidth * 0.7,
     bottom: 50,
     left: 50,
     right: 50
-  },
-  radius = 3;
+  };
 
 let svg;
 let xScale;
@@ -86,8 +85,13 @@ let state = {
     // + UI ELEMENT SETUP
     const selectDropMenu = d3.select("#compare-trendlines-variable");
     const selectUpdateBtn = d3.select("#update-trendlines-btn");
-    const selectPlayer1 = d3.select("#player1");
-    const selectPlayer2 = d3.select("#player2");
+    const DOM_menu = document.getElementById("compare-trendlines-variable");
+    const DOM_player1 = document.getElementById("player1");
+    const DOM_player2 = document.getElementById("player2");
+    
+
+    DOM_player1.value = state.player1;
+    DOM_player2.value = state.player2;
 
     const varNames = Object.keys(state.data[0]).slice(2);
 
@@ -100,17 +104,14 @@ let state = {
 
     selectUpdateBtn.on("click", e => {
 
-      const DOM_menu = document.getElementById("compare-trendlines-variable");
-      const selectedOption = DOM_menu.options[DOM_menu.selectedIndex].value;
-      const DOM_player1 = document.getElementById("player1");
       const player1Text = DOM_player1.value;
-      const DOM_player2 = document.getElementById("player2");
       const player2Text = DOM_player2.value;
+      const selectedOption = DOM_menu.options[DOM_menu.selectedIndex].value;
 
       state.player1 = player1Text;
       state.player2 = player2Text;
       state.variable = selectedOption;
-
+      console.log(state);
       draw();
     });
   
@@ -154,7 +155,7 @@ let state = {
 
 
   // + UPDATE SCALE(S), if needed
-  yScale.domain(d3.extent(state.bothPlayersData, d => d.Games_Played))
+  yScale.domain(d3.extent(state.bothPlayersData, d => d[state.variable]))
   xScale.domain(d3.extent(state.bothPlayersData, d => d.Year))
 
   // + UPDATE AXIS/AXES, if needed
@@ -171,7 +172,7 @@ let state = {
   // specify line generator function
   const lineGen = d3.line()
     .x(d => xScale(d.Year))
-    .y(d => yScale(d.Games_Played))
+    .y(d => yScale(d[state.variable]))
 
   
   const player1data = state.bothPlayersData.filter(d => d.Player === state.player1);
