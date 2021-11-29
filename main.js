@@ -25,6 +25,10 @@ let state = {
   
   /* LOAD DATA */
   // + SET YOUR DATA PATH
+
+
+  
+
   d3.csv('merged_data.csv', d => {
     // use custom initializer to reformat the data the way we want it
     // ref: https://github.com/d3/d3-fetch#dsv
@@ -49,7 +53,11 @@ let state = {
       Blocks: +d.Blocks,
       Total_Points_Made: +d.Total_Points_Made,
       Salary: +d.Salary,
-      Cost_Per_Point: +d.Cost_Per_Point
+      Cost_Per_Point: +d.Cost_Per_Point,
+      Free_Throw_Accuracy: +d.Free_Throw_Accuracy,
+      Field_Goal_Accuracy: +d.Field_Goal_Accuracy,
+      Three_Pointers_Accuracy: +d.Three_Pointers_Accuracy,
+      Avg_minutes_per_game: +d.avg_minutes_per_game,
     }
   })
     .then(data => {
@@ -92,7 +100,7 @@ let state = {
     DOM_player1.value = state.player1;
     DOM_player2.value = state.player2;
 
-    const varNames = Object.keys(state.data[0]).slice(2);
+    const varNames = Object.keys(state.data[0]).slice(2).sort();
 
     selectDropMenu.selectAll("option")
       .data(varNames)
