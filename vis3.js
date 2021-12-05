@@ -36,15 +36,18 @@ function init3() {
 
 
     // /* SCALES */
-    vis3.xScale = d3.scaleBand()
-        .domain(vis3.teamRanks.map(d => d.Team_Code))
+    vis3.xScale = d3.scaleLinear()
+        .domain(d3.extent(vis3.teamRanks, d => d[vis3.variable]))
         .range([margin.left, width - margin.right])
+        .nice()
+        
+
+    vis3.yScale = d3.scaleBand()
+        .domain(vis3.teamRanks.map(d => d.Team_Code))
+        .range([margin.bottom, height - margin.top])
         .paddingInner(.2)
         .paddingOuter(.1)
-
-    vis3.yScale = d3.scaleLinear()
-        .domain(d3.extent(vis3.teamRanks, d => d[vis3.variable]))
-        .range([height - margin.top, margin.bottom])
+        
     
 
     // UI SETUP
@@ -105,12 +108,12 @@ function init3() {
     // AXIS LABELS
     vis3.xLabel = d3.select("#vis-teams svg text.x-label")
         .attr("transform", `translate(${width / 2}, ${height - margin.bottom * .2})`)
-        .text("Teams")
+        .text(vis3.variable.replaceAll("_"," "))
 
     vis3.yLabel = d3.select("#vis-teams svg text.y-label")
         .attr("transform", `translate(${18}, ${height / 2})`)
         .attr("writing-mode", 'vertical-rl')
-        .text(vis3.variable.replaceAll("_"," "))
+        .text("Teams")
 
 
     // SVG
@@ -132,8 +135,8 @@ function init3() {
 
 
     // + UPDATE SCALE(S), if needed
-    vis3.yScale.domain(d3.extent(vis3.teamRanks, d => d[vis3.variable]))
-    vis3.xScale.domain(vis3.teamRanks.map(d => d.Team_Code))
+    vis3.yScale.domain(vis3.teamRanks.map(d => d.Team_Code))
+    vis3.xScale.domain(d3.extent(vis3.teamRanks, d => d[vis3.variable]))
 
     // + UPDATE AXIS/AXES, if needed
     vis3.yAxisGroup
@@ -147,7 +150,7 @@ function init3() {
       .call(d3.axisBottom(vis3.xScale))// need to update the scale
 
     // + UPDATE Y LABEL
-    vis3.yLabel
+    vis3.xLabel
       .text(vis3.variable.replaceAll("_"," "))
 
 
@@ -156,19 +159,19 @@ function init3() {
         .data(vis3.teamRanks)
         .join("text")
         .attr("class", "vis3-bar-num")
-        .attr("x", (d, i) => vis3.xScale(d.Team_Code) + (i * 0.8) + String(d[vis3.variable]).length * 1.5)
+        .attr("x", (d, i) => vis3.xScale(d[vis3.variable]) + (i * 2 > 15 ? 15 : 10))
         .text(d => `${d[vis3.variable]}`)
-        .attr("y", d => vis3.yScale(d[vis3.variable]) - 8)
+        .attr("y", d => vis3.yScale(d.Team_Code) + 11)
    
     // BAR RECTANGLES
     vis3.svg.selectAll("rect.vis3-bar")
         .data(vis3.teamRanks)
         .join("rect")
         .attr("class", "vis3-bar")
-        .attr("width", vis3.xScale.bandwidth())
-        .attr("height", d => height - vis3.yScale(d[vis3.variable]) - margin.bottom)
-        .attr("x", d => vis3.xScale(d.Team_Code))
-        .attr("y", d => vis3.yScale(d[vis3.variable]))
+        .attr("width", d => vis3.xScale(d[vis3.variable]) - margin.right)
+        .attr("height", vis3.yScale.bandwidth())
+        .attr("x", margin.left)
+        .attr("y", d => vis3.yScale(d.Team_Code))
         .attr("fill", "yellow")
         .attr("stroke", "black");
   }
