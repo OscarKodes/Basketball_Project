@@ -36,7 +36,7 @@
     DOM_player1.value = vis1.player1;
     DOM_player2.value = vis1.player2;
 
-    const varNames = Object.keys(state.data[0]).slice(2).sort();
+    const varNames = Object.keys(state.data[0]).slice(4).sort();
 
     selectDropMenu.selectAll("option")
       .data(varNames)

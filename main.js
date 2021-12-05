@@ -23,7 +23,10 @@ let vis2 = {
     top10: []
 };
 
-let vis3 = {};
+let vis3 = {
+    variable: "All_Rebounds",
+    Year: 2015
+};
 
 /* APPLICATION STATE */
 let state = {
@@ -36,6 +39,8 @@ let state = {
     return {
       Player: d.Player,
       Year: +d.Season.split(" - ")[1],
+      Team_Code: d.Team_Code,
+      Team_Name: d.Team_Name,
       Games_Played: +d.Games_Played,
       Minutes_Played: +d.Minutes_Played,
       Field_Goals_Made: +d.Field_Goals_Made,
@@ -67,4 +72,5 @@ let state = {
 
       init1();
       init2();
+      init3();
     });

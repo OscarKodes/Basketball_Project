@@ -22,7 +22,7 @@ function init2() {
     // UI SETUP
     const selectVar = d3.select("#player-ranks-variable");
     const selectYear = d3.select("#player-ranks-year");
-    const varNames = Object.keys(state.data[0]).slice(2).sort();
+    const varNames = Object.keys(state.data[0]).slice(4).sort();
     const years = [];
 
     for (let i = 2000;  i <= 2020; i++) {
