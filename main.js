@@ -1,7 +1,7 @@
 
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
-  height = window.innerWidth * 0.7,
+  height = window.innerWidth * 0.4,
   margin = {
     top: 50,
     bottom: 50,

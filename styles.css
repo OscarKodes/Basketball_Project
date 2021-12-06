@@ -1,7 +1,96 @@
 body {
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 16px;
-    padding: 1em;
-    text-align: center;
-    margin-top: 2rem;
-  }
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  padding: 0;
+  text-align: center;
+  margin: 0;
+}
+
+body * {
+  grid-column-start: 2;
+}
+
+h1 {
+  margin: 0;
+}
+
+#grid-container {
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+
+#navbar {
+  padding-top: 4rem;
+  background-color: #555;
+  width: 350px;
+  height: 100%;
+  position: fixed;
+  grid-column-start: 1;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  background-color: #333;
+  border: 2px solid black;
+  border-radius: .5rem;
+  display: block;
+  width: 65%;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+}
+
+.nav-link:hover {
+  background-color: #AAA;
+  color: black;
+}
+
+#introduction-section {
+  margin: 10rem auto;
+}
+
+#player-names-input-table {
+  margin: 2rem auto;
+  width: 70%;
+}
+
+#player-names-input-table td {
+  text-align: center;
+}
+
+input#player1 {
+  background-color: rgb(190, 100, 100);
+  color: white;
+}
+
+input#player2 {
+  background-color: rgb(102, 102, 194);
+  color: white;
+}
+
+.typeahead__query {
+  width: 80%;
+  margin: .5rem auto;
+}
+
+button.typeahead__filter-button {
+  display: none;
+}
+
+
+#compare-trendlines-section {
+  margin: 10rem auto;
+}
+
+#player-ranks-section {
+  margin: 10rem auto;
+}
+
+#team-ranks-section {
+  margin: 10rem auto;
+}
+
+#source-section {
+  margin: 10rem auto;
+}
