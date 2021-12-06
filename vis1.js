@@ -131,6 +131,7 @@
       .attr("class", 'line1')
       .attr("fill", "none")
       .attr("stroke", "red")
+      .attr("stroke-width", "0.5rem")
       .attr("d", d => lineGen(d));
 
     // + DRAW LINE AND/OR AREA
@@ -140,5 +141,6 @@
       .attr("class", 'line2')
       .attr("fill", "none")
       .attr("stroke", "blue")
+      .attr("stroke-width", "0.5rem")
       .attr("d", d => lineGen(d));
   }
