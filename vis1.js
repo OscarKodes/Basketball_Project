@@ -62,8 +62,6 @@
     vis1.svg = d3.select("#vis-trendlines svg")
         .attr("width", width)
         .attr("height", height)
-        .style("background-color", "lavender")
-        .attr("opacity", "0.5")
   
     // + CALL AXES
     vis1.xAxisGroup = vis1.svg.select(".x-axis")

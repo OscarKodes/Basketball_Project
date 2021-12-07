@@ -90,8 +90,6 @@ function init2() {
     vis2.svg = d3.select("#vis-players svg")
         .attr("height", height)
         .attr("width", width)
-        .style("background-color", "lavender")
-        .attr("opacity", 0.5);
 
     draw2(); // calls the draw function
   }

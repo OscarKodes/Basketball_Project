@@ -122,8 +122,6 @@ function init3() {
     vis3.svg = d3.select("#vis-teams svg")
         .attr("height", height)
         .attr("width", width)
-        .style("background-color", "lavender")
-        .attr("opacity", 0.5);
 
     draw3(); // calls the draw function
   }
