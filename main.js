@@ -5,8 +5,8 @@ const width = window.innerWidth * 0.7,
   margin = {
     top: 50,
     bottom: 50,
-    left: 50,
-    right: 50
+    left: 30,
+    right: 80
   };
 
 
@@ -69,12 +69,12 @@ let state = {
       Steals: +d.Steals,
       Blocks: +d.Blocks,
       Total_Points_Made: +d.Total_Points_Made,
-      "Salary_(Millions)": +d.Salary / 1000000,
-      "Cost_Per_Point_(Thousands)": +d.Cost_Per_Point / 1000,
-      Free_Throw_Accuracy: +d.Free_Throw_Accuracy,
-      Field_Goal_Accuracy: +d.Field_Goal_Accuracy,
-      Three_Pointers_Accuracy: +d.Three_Pointers_Accuracy,
-      Avg_minutes_per_game: +d.avg_minutes_per_game,
+      "Salary_(Millions)": Math.round(+d.Salary / 1000000),
+      "Cost_Per_Point_(Thousands)": Math.round(+d.Cost_Per_Point / 1000),
+      "Free_Throw_Accuracy %": Math.round(+d.Free_Throw_Accuracy * 10),
+      "Field_Goal_Accuracy %": Math.round(+d.Field_Goal_Accuracy * 10),
+      "Three_Pointers_Accuracy %": Math.round(+d.Three_Pointers_Accuracy * 10),
+      Avg_minutes_per_game: Math.round(+d.avg_minutes_per_game),
     }
   })
     .then(data => {

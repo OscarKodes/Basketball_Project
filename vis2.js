@@ -68,7 +68,7 @@ function init2() {
 
     // + CALL AXES
     vis2.xAxisGroup = d3.select("#vis-players svg g.x-axis")
-        .attr("transform", `translate(${0}, ${height - margin.bottom})`)
+        .attr("transform", `translate(${50}, ${height - margin.bottom})`)
         .call(d3.axisBottom(vis2.xScale));
 
     vis2.yAxisGroup = d3.select("#vis-players svg g.y-axis")
@@ -81,7 +81,7 @@ function init2() {
         .text("Top 10 Players")
 
     vis2.yLabel = d3.select("#vis-players svg text.y-label")
-        .attr("transform", `translate(${18}, ${height / 2})`)
+        .attr("transform", `translate(${18}, ${(height / 2) - 80})`)
         .attr("writing-mode", 'vertical-rl')
         .text(vis2.variable.replaceAll("_"," "))
 
@@ -130,7 +130,11 @@ function init2() {
         .data(vis2.top10)
         .join("text")
         .attr("class", "vis2-bar-num")
-        .attr("x", (d, i) => vis2.xScale(d.Player) + (i * 0.8) + String(d[vis2.variable]).length * 1.5)
+        .attr("x", (d, i) => 
+            vis2.xScale(d.Player) + 
+            (i * 0.8) + 
+            String(d[vis2.variable]).length * 1.5 +
+            50)
         .text(d => `${d[vis2.variable]}`)
         .attr("y", d => vis2.yScale(d[vis2.variable]) - 8)
    
@@ -141,7 +145,7 @@ function init2() {
         .attr("class", "vis2-bar")
         .attr("width", vis2.xScale.bandwidth())
         .attr("height", d => height - vis2.yScale(d[vis2.variable]) - margin.bottom)
-        .attr("x", d => vis2.xScale(d.Player))
+        .attr("x", d => vis2.xScale(d.Player) + 50)
         .attr("y", d => vis2.yScale(d[vis2.variable]) - 1)
         .attr("fill", d => {
 

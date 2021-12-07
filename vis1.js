@@ -75,11 +75,10 @@
     vis1.svg = d3.select("#vis-trendlines svg")
         .attr("width", width)
         .attr("height", height)
-        .style("background-color", "pink")
   
     // + CALL AXES
     vis1.xAxisGroup = vis1.svg.select(".x-axis")
-      .attr("transform", `translate(${0}, ${height - margin.bottom})`)
+      .attr("transform", `translate(${50}, ${height - margin.bottom})`)
       .call(d3.axisBottom(vis1.xScale));
 
     vis1.yAxisGroup = vis1.svg.select(".y-axis")
@@ -92,7 +91,7 @@
       .text("Year")
 
     vis1.yLabel = vis1.svg.select(".y-label")
-      .attr("transform", `translate(${9}, ${(height / 2) - 70})`)
+      .attr("transform", `translate(${18}, ${(height / 2) - 70})`)
       .attr("writing-mode", 'vertical-rl')
       .text(vis1.variable.replaceAll("_"," "))
   
@@ -129,13 +128,13 @@
 
     // specify line generator function
     const lineGen = d3.line()
-      .x(d => vis1.xScale(d.Year))
+      .x(d => vis1.xScale(d.Year) + 50)
       .y(d => vis1.yScale(d[vis1.variable]))
 
     
     const player1data = vis1.bothPlayersData.filter(d => d.Player === vis1.player1);
     const player2data = vis1.bothPlayersData.filter(d => d.Player === vis1.player2);
-
+    console.log(player1data);
     // + DRAW LINE AND/OR AREA
     vis1.svg.selectAll(".line1")
       .data([player1data]) // data needs to take an []

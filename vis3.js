@@ -100,7 +100,7 @@ function init3() {
 
     // + CALL AXES
     vis3.xAxisGroup = d3.select("#vis-teams svg g.x-axis")
-        .attr("transform", `translate(${0}, ${height - margin.bottom})`)
+        .attr("transform", `translate(${50}, ${height - margin.bottom})`)
         .call(d3.axisBottom(vis3.xScale));
 
     vis3.yAxisGroup = d3.select("#vis-teams svg g.y-axis")
@@ -109,7 +109,7 @@ function init3() {
 
     // AXIS LABELS
     vis3.xLabel = d3.select("#vis-teams svg text.x-label")
-        .attr("transform", `translate(${width / 2}, ${height - margin.bottom * .2})`)
+        .attr("transform", `translate(${width / 2.5}, ${height - margin.bottom * .2})`)
         .text(vis3.variable.replaceAll("_"," "))
 
     vis3.yLabel = d3.select("#vis-teams svg text.y-label")
@@ -159,7 +159,9 @@ function init3() {
         .data(vis3.teamRanks)
         .join("text")
         .attr("class", "vis3-bar-num")
-        .attr("x", (d, i) => vis3.xScale(d[vis3.variable]) + (i * 2 > 15 ? 15 : 10))
+        .attr("x", (d, i) => vis3.xScale(d[vis3.variable]) + 
+            (i * 2 > 15 ? 15 : 10) +
+            + 50)
         .text(d => `${d[vis3.variable]}`)
         .attr("y", d => vis3.yScale(d.Team_Code) + 11)
    
@@ -168,9 +170,9 @@ function init3() {
         .data(vis3.teamRanks)
         .join("rect")
         .attr("class", "vis3-bar")
-        .attr("width", d => vis3.xScale(d[vis3.variable]) - margin.right)
+        .attr("width", d => vis3.xScale(d[vis3.variable]) - 30)
         .attr("height", vis3.yScale.bandwidth())
-        .attr("x", margin.left + 2)
+        .attr("x", margin.left + 2 + 50)
         .attr("y", d => vis3.yScale(d.Team_Code))
         .attr("fill", d => {
 

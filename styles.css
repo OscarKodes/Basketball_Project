@@ -124,6 +124,10 @@ button.typeahead__filter-button {
   text-align: left;
 }
 
+#team-ranks-section text.vis3-bar-num{
+  font-size: 1rem;
+}
+
 #source-section {
   margin: 10rem auto 20rem 3rem;
   width: 100%;
