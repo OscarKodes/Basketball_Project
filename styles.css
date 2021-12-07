@@ -63,8 +63,16 @@ h1 {
   text-align: left;
 }
 
+#compare-trendlines-section {
+  margin: 10rem auto 14rem 4rem;
+  width: 100%;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
 #player-names-input-table {
-  margin: 2rem auto;
+  text-align: center;
   width: 70%;
 }
 
@@ -87,21 +95,21 @@ input#player2 {
   margin: .5rem auto;
 }
 
+
 button.typeahead__filter-button {
   display: none;
 }
 
-
-#compare-trendlines-section {
-  margin: 10rem auto;
+#update-trendlines-btn {
+  display: none;
 }
 
 #player-ranks-section {
-  margin: 10rem auto;
+  margin: 10rem auto 14rem 4rem;
 }
 
 #team-ranks-section {
-  margin: 10rem auto;
+  margin: 10rem auto 14rem 4rem;
 }
 
 #source-section {

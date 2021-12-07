@@ -45,6 +45,19 @@
       .attr("value", d => d)
       .text(d => d.replaceAll("_", " "));
 
+    const clickBtn = () => {
+
+      setTimeout(() => {
+        document.getElementById("update-trendlines-btn").click();
+      }, 200);
+      
+    };
+
+    selectDropMenu.on("change", clickBtn);
+    d3.select("#player1").on("change", clickBtn);
+    d3.select("#player2").on("change", clickBtn);
+
+
     selectUpdateBtn.on("click", e => {
 
       const player1Text = DOM_player1.value;
@@ -54,7 +67,7 @@
       vis1.player1 = player1Text;
       vis1.player2 = player2Text;
       vis1.variable = selectedOption;
-      console.log(vis1);
+
       draw1();
     });
   
