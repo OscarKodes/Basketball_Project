@@ -75,6 +75,7 @@
     vis1.svg = d3.select("#vis-trendlines svg")
         .attr("width", width)
         .attr("height", height)
+        .style("background-color", "pink")
   
     // + CALL AXES
     vis1.xAxisGroup = vis1.svg.select(".x-axis")
@@ -91,7 +92,7 @@
       .text("Year")
 
     vis1.yLabel = vis1.svg.select(".y-label")
-      .attr("transform", `translate(${18}, ${height / 2})`)
+      .attr("transform", `translate(${9}, ${(height / 2) - 70})`)
       .attr("writing-mode", 'vertical-rl')
       .text(vis1.variable.replaceAll("_"," "))
   
