@@ -47,8 +47,8 @@ function init3() {
     vis3.yScale = d3.scaleBand()
         .domain(vis3.teamRanks.map(d => d.Team_Code))
         .range([margin.bottom, height - margin.top])
-        .paddingInner(.2)
-        .paddingOuter(.1)
+        .paddingInner(.4)
+        .paddingOuter(.3)
         
     
 
@@ -170,8 +170,23 @@ function init3() {
         .attr("class", "vis3-bar")
         .attr("width", d => vis3.xScale(d[vis3.variable]) - margin.right)
         .attr("height", vis3.yScale.bandwidth())
-        .attr("x", margin.left)
+        .attr("x", margin.left + 2)
         .attr("y", d => vis3.yScale(d.Team_Code))
-        .attr("fill", "yellow")
-        .attr("stroke", "black");
+        .attr("fill", d => {
+
+            let colorArr = state.Team_Colors[d.Team_Code] ?
+                    state.Team_Colors[d.Team_Code] :
+                    ["black", "grey"];
+
+            return "#" + colorArr[0];
+        })
+        .attr("stroke", d => {
+
+            let colorArr = state.Team_Colors[d.Team_Code] ?
+                    state.Team_Colors[d.Team_Code] :
+                    ["black", "grey"];
+
+            return "#" + colorArr[1];
+        })
+        .attr("stroke-width", "3px");
   }

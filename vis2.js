@@ -142,7 +142,18 @@ function init2() {
         .attr("width", vis2.xScale.bandwidth())
         .attr("height", d => height - vis2.yScale(d[vis2.variable]) - margin.bottom)
         .attr("x", d => vis2.xScale(d.Player))
-        .attr("y", d => vis2.yScale(d[vis2.variable]))
-        .attr("fill", "yellow")
-        .attr("stroke", "black");
+        .attr("y", d => vis2.yScale(d[vis2.variable]) - 1)
+        .attr("fill", d => {
+
+            let color = state.Team_Colors[d.Team_Code][0];
+
+            return "#" + (color ? color : "black");
+        })
+        .attr("stroke", d => {
+
+            let color = state.Team_Colors[d.Team_Code][1];
+
+            return "#" + (color ? color : "black");
+        })
+        .attr("stroke-width", "3px");
   }
