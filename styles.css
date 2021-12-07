@@ -105,5 +105,19 @@ button.typeahead__filter-button {
 }
 
 #source-section {
-  margin: 10rem auto;
+  margin: 10rem auto 14rem 4rem;
 }
+
+#source-section li {
+  margin: 1.5rem 0;
+}
+
+#source-section a {
+  text-decoration: none;
+  color: rgb(45, 175, 192);
+}
+
+#source-section a:hover {
+  color: rgb(5, 89, 100);
+}
+
