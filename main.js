@@ -70,8 +70,6 @@ let state = {
       console.log("loaded data:", data);
       state.data = data;
 
-      // document.getElementsByClassName("intro-nav").click();
-
       init1();
       init2();
       init3();

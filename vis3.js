@@ -25,7 +25,9 @@ function updateTeamRanks () {
         return {Team_Code: key, [vis3.variable] : score}
     });
 
-    vis3.teamRanks = dataArr.sort((a, b) => b[vis3.variable] - a[vis3.variable]);
+    vis3.teamRanks = dataArr
+        .filter(d => d[vis3.variable] !== 0)
+        .sort((a, b) => b[vis3.variable] - a[vis3.variable]);
 }
 
 function init3() {
