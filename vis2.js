@@ -17,6 +17,7 @@ function init2() {
     vis2.yScale = d3.scaleLinear()
         .domain(d3.extent(vis2.top10, d => d[vis2.variable]))
         .range([height - margin.top, margin.bottom])
+        .nice()
     
 
     // UI SETUP
@@ -107,7 +108,7 @@ function init2() {
 
 
     // + UPDATE SCALE(S), if needed
-    vis2.yScale.domain(d3.extent(vis2.top10, d => d[vis2.variable]))
+    vis2.yScale.domain(d3.extent(vis2.top10, d => d[vis2.variable])).nice()
     vis2.xScale.domain(vis2.top10.map(d => d.Player))
 
     // + UPDATE AXIS/AXES, if needed

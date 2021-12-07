@@ -97,7 +97,7 @@
 
 
     // + UPDATE SCALE(S), if needed
-    vis1.yScale.domain(d3.extent(vis1.bothPlayersData, d => d[vis1.variable]))
+    vis1.yScale.domain(d3.extent(vis1.bothPlayersData, d => d[vis1.variable])).nice()
     vis1.xScale.domain(d3.extent(vis1.bothPlayersData, d => d.Year))
 
     // + UPDATE AXIS/AXES, if needed

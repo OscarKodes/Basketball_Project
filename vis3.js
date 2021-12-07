@@ -138,7 +138,7 @@ function init3() {
 
     // + UPDATE SCALE(S), if needed
     vis3.yScale.domain(vis3.teamRanks.map(d => d.Team_Code))
-    vis3.xScale.domain(d3.extent(vis3.teamRanks, d => d[vis3.variable]))
+    vis3.xScale.domain(d3.extent(vis3.teamRanks, d => d[vis3.variable])).nice()
 
     // + UPDATE AXIS/AXES, if needed
     vis3.yAxisGroup
