@@ -200,7 +200,7 @@
                                         ${vis1.yScale(d[vis1.variable])})`)
                 .attr("r", 0)
                 .attr("fill", "white")
-                .attr("stroke", "black")
+                .attr("stroke", d => d.Player === vis1.player1 ? "red" : "blue")
                 .attr("stroke-width", 3)
                 .attr("opacity", "0.4")
               .call(enter => enter.transition()
