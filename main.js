@@ -73,7 +73,7 @@ let state = {
       "Free_Throw_Accuracy %": Math.round(+d.Free_Throw_Accuracy * 100),
       "Field_Goal_Accuracy %": Math.round(+d.Field_Goal_Accuracy * 100),
       "Three_Pointers_Accuracy %": Math.round(+d.Three_Pointers_Accuracy * 100),
-      Avg_minutes_per_game: Math.round(+d.avg_minutes_per_game),
+      Avg_minutes_per_game: Math.round(+d.avg_minutes_per_game * 2) / 2,
     }
   })
     .then(data => {
