@@ -159,5 +159,6 @@ function init2() {
 
             return "#" + (color ? color : "black");
         })
-        .attr("stroke-width", "3px");
+        .attr("stroke-width", "3px")
+        .attr("opacity", 0.5);
   }

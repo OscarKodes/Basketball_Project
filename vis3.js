@@ -210,5 +210,6 @@ function init3() {
 
             return "#" + colorArr[1];
         })
-        .attr("stroke-width", "3px");
+        .attr("stroke-width", "3px")
+        .attr("opacity", 0.3);
   }

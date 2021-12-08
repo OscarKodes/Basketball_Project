@@ -137,21 +137,56 @@
 
     // + DRAW LINE AND/OR AREA
     vis1.svg.selectAll(".line1")
-      .data([player1data]) // data needs to take an []
-      .join("path")
-      .attr("class", 'line1')
-      .attr("fill", "none")
-      .attr("stroke", "red")
-      .attr("stroke-width", "0.5rem")
-      .attr("d", d => lineGen(d));
+      .data([player1data], d => d.Year) // data needs to take an []
+      .join(
+        enter => enter
+          .append("path")
+            .attr("class", "line1")
+            .attr("fill", "none")
+            .attr("stroke", "red")
+            .attr("stroke-width", "0.5rem")
+            .attr("d", d => lineGen(d))
+          .call(enter => enter.transition()
+            .duration(500)
+          ),
+        update => update
+          .attr("stroke-width", "0.1rem")
+          .call(update => update.transition()
+            .duration(500)
+            .attr("d", d => lineGen(d))
+            .attr("stroke-width", "0.5rem")),
+        exit => exit
+          .call(exit => exit.transition()
+            .duration(500)
+            .attr("stroke-width", "0"))
+            .remove()
+          );
+      
 
     // + DRAW LINE AND/OR AREA
     vis1.svg.selectAll(".line2")
-      .data([player2data]) // data needs to take an []
-      .join("path")
-      .attr("class", 'line2')
-      .attr("fill", "none")
-      .attr("stroke", "blue")
-      .attr("stroke-width", "0.5rem")
-      .attr("d", d => lineGen(d));
+      .data([player2data], d => d.Year) // data needs to take an []
+      .join(
+        enter => enter
+          .append("path")
+            .attr("class", "line2")
+            .attr("fill", "none")
+            .attr("stroke", "blue")
+            .attr("stroke-width", "0.5rem")
+            .attr("d", d => lineGen(d))
+          .call(enter => enter.transition()
+            .duration(500)
+          ),
+        update => update
+          .attr("stroke-width", "0.1rem")
+          .call(update => update.transition()
+            .duration(500)
+            .attr("d", d => lineGen(d))
+            .attr("stroke-width", "0.5rem")),
+        exit => exit
+          .call(exit => exit.transition()
+            .duration(500)
+            .attr("stroke-width", "0"))
+            .remove()
+          );
   }
