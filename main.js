@@ -12,20 +12,20 @@ const width = window.innerWidth * 0.7,
 
 
 let vis1 = {
-    variable: "All_Rebounds",
+    variable: "Assists",
     player1: "",
     player2: "",
     bothPlayersData: []
 };
 
 let vis2 = {
-    variable: "All_Rebounds",
+    variable: "Assists",
     Year: 2015,
     top10: []
 };
 
 let vis3 = {
-    variable: "All_Rebounds",
+    variable: "Assists",
     Year: 2015
 };
 
@@ -55,7 +55,7 @@ let state = {
       Team_Code: d.Team_Code,
       Team_Name: d.Team_Name,
       Games_Played: +d.Games_Played,
-      Minutes_Played: Math.round(+d.Minutes_Played),
+      "Minutes_Played_(Total)": Math.round(+d.Minutes_Played),
       Field_Goals_Made: +d.Field_Goals_Made,
       Field_Goal_Attempts: +d.Field_Goal_Attempts,
       Three_Pointers_Made: +d.Three_Pointers_Made,
@@ -64,19 +64,19 @@ let state = {
       Free_Throw_Attempts: +d.Free_Throw_Attempts,
       Turnovers: +d.Turnovers,
       Personal_Fouls: +d.Personal_Fouls,
-      Offensive_Rebounds: +d.Offensive_Rebounds,
-      Defensive_Rebounds: +d.Defensive_Rebounds,
-      All_Rebounds: +d.All_Rebounds,
+      "Rebounds_(Offensive)": +d.Offensive_Rebounds,
+      "Rebounds_(Defensive)": +d.Defensive_Rebounds,
+      "Rebounds_(All)": +d.All_Rebounds,
       Assists: +d.Assists,
       Steals: +d.Steals,
       Blocks: +d.Blocks,
       Total_Points_Made: +d.Total_Points_Made,
       "Salary_(Millions)": Math.round(+d.Salary * 2 / 1000000) / 2,
-      "Cost_Per_Point_(Thousands)": Math.round(+d.Cost_Per_Point * 2 / 1000) / 2,
+      // "Cost_Per_Point_(Thousands)": Math.round(+d.Cost_Per_Point * 2 / 1000) / 2,
       "Free_Throw_Accuracy %": Math.round(+d.Free_Throw_Accuracy * 100),
       "Field_Goal_Accuracy %": Math.round(+d.Field_Goal_Accuracy * 100),
       "Three_Pointers_Accuracy %": Math.round(+d.Three_Pointers_Accuracy * 100),
-      Avg_minutes_per_game: Math.round(+d.avg_minutes_per_game * 2) / 2,
+      "Min_per_game_(Avg)": Math.round(+d.avg_minutes_per_game * 2) / 2,
     }
   })
     .then(data => {

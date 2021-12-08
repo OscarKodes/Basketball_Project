@@ -28,7 +28,7 @@ function updateTeamRanks () {
 
         // If the sum total variable needs to be averaged for the team
         if (vis3.variable[vis3.variable.length - 1] === "%" || 
-            ["Avg ", "Cost"].includes(vis3.variable.slice(0, 4))) {
+            ["Min", "Cos"].includes(vis3.variable.slice(0, 3))) {
             let playerCount = vis3.allPlayersInYear
                 .filter(d => d.Team_Code === NBA_Code)
                 .length;
