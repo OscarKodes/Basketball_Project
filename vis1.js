@@ -22,7 +22,7 @@
 
     vis1.yScale = d3.scaleLinear()
       .domain(d3.extent(vis1.bothPlayersData, d => d.Games_Played))
-      .range([height - margin.bottom, margin.top])
+      .range([heightForVis1 - margin.bottom, margin.top])
       .nice();
   
     // + UI ELEMENT SETUP
@@ -74,11 +74,11 @@
     // + CREATE SVG ELEMENT
     vis1.svg = d3.select("#vis-trendlines svg")
         .attr("width", width)
-        .attr("height", height)
+        .attr("height", heightForVis1)
   
     // + CALL AXES
     vis1.xAxisGroup = vis1.svg.select(".x-axis")
-      .attr("transform", `translate(${50}, ${height - margin.bottom})`)
+      .attr("transform", `translate(${50}, ${heightForVis1 - margin.bottom})`)
       .call(d3.axisBottom(vis1.xScale));
 
     vis1.yAxisGroup = vis1.svg.select(".y-axis")
@@ -87,11 +87,11 @@
 
     // AXIS LABELS
     vis1.xLabel = vis1.svg.select(".x-label")
-      .attr("transform", `translate(${width / 2}, ${height - margin.bottom * .2})`)
+      .attr("transform", `translate(${width / 2}, ${heightForVis1 - margin.bottom * .2})`)
       .text("Year")
 
     vis1.yLabel = vis1.svg.select(".y-label")
-      .attr("transform", `translate(${18}, ${(height / 2) - 70})`)
+      .attr("transform", `translate(${18}, ${(heightForVis1 / 2) - 70})`)
       .attr("writing-mode", 'vertical-rl')
       .text(vis1.variable.replaceAll("_"," "))
   

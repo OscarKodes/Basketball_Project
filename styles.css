@@ -53,7 +53,7 @@ h1 {
 }
 
 #introduction-section {
-  margin: 11rem auto 15rem 3rem;
+  margin: 11rem auto 15rem 0;
 }
 
 .text-container{
@@ -71,9 +71,9 @@ h1 {
   text-align: left;
 }
 
-#compare-trendlines-section .section-text{
+/* #compare-trendlines-section .section-text{
   margin-left: 3rem;
-}
+} */
 
 #player-names-input-table {
   text-align: center;
@@ -108,8 +108,9 @@ button.typeahead__filter-button {
   display: none;
 }
 
+
 #player-ranks-section {
-  margin: 10rem auto 14rem 4rem;
+  margin: 10rem auto 14rem 0;
   width: 100%;
   font-size: 1.5rem;
   line-height: 1.5;
@@ -117,7 +118,7 @@ button.typeahead__filter-button {
 }
 
 #team-ranks-section {
-  margin: 10rem auto 14rem 3rem;
+  margin: 10rem auto 14rem 0;
   width: 100%;
   font-size: 1.5rem;
   line-height: 1.5;
@@ -129,7 +130,7 @@ button.typeahead__filter-button {
 }
 
 #source-section {
-  margin: 10rem auto 20rem 3rem;
+  margin: 10rem auto 20rem 0;
   width: 100%;
   font-size: 1.5rem;
   line-height: 1.5;
