@@ -140,25 +140,47 @@ function init2() {
    
     // BAR RECTANGLES
     vis2.svg.selectAll("rect.vis2-bar")
-        .data(vis2.top10)
-        .join("rect")
-        .attr("class", "vis2-bar")
-        .attr("width", vis2.xScale.bandwidth())
-        .attr("height", d => height - vis2.yScale(d[vis2.variable]) - margin.bottom)
-        .attr("x", d => vis2.xScale(d.Player) + 50)
-        .attr("y", d => vis2.yScale(d[vis2.variable]) - 1)
-        .attr("fill", d => {
+        .data(vis2.top10, d => d.Player)
+        .join(
+            enter => enter
+                .append("rect")
+                    .attr("class", "vis2-bar")
+                    .attr("width", vis2.xScale.bandwidth())
+                    .attr("height", 0)
+                    .attr("x", d => vis2.xScale(d.Player) + 50)
+                    .attr("y", height - margin.bottom)
+                    .attr("fill", d => {
 
-            let color = state.Team_Colors[d.Team_Code][0];
+                        let colorArr = state.Team_Colors[d.Team_Code] ?
+                                state.Team_Colors[d.Team_Code] :
+                                ["black", "grey"];
+            
+                        return "#" + colorArr[0];
+                    })
+                    .attr("stroke", d => {
 
-            return "#" + (color ? color : "black");
-        })
-        .attr("stroke", d => {
-
-            let color = state.Team_Colors[d.Team_Code][1];
-
-            return "#" + (color ? color : "black");
-        })
-        .attr("stroke-width", "3px")
-        .attr("opacity", 0.5);
+                        let colorArr = state.Team_Colors[d.Team_Code] ?
+                                state.Team_Colors[d.Team_Code] :
+                                ["black", "grey"];
+            
+                        return "#" + colorArr[1];
+                    })
+                    .attr("stroke-width", "3px")
+                    .attr("opacity", 0.5)
+                .call(enter => enter.transition()
+                    .duration(500)
+                    .attr("y", d => vis2.yScale(d[vis2.variable]) - 1)
+                    .attr("height", d => height - vis2.yScale(d[vis2.variable]) - margin.bottom)),
+            update => update
+                    .call(update => update.transition()
+                        .duration(500)
+                        .attr("x", d => vis2.xScale(d.Player) + 50)
+                        .attr("height", d => height - vis2.yScale(d[vis2.variable]) - margin.bottom)
+                        .attr("y", d => vis2.yScale(d[vis2.variable]) - 1)),
+            exit => exit
+                    .call(exit => exit.transition()
+                        .duration(500)
+                        .attr("opacity", 0))
+                    .remove()
+        );
   }
