@@ -94,5 +94,5 @@ function disableFor500ms() {
 
   setTimeout(() => {
     document.querySelector("#body-wrapper").classList.remove("disabled-mouse");
-  }, 500);
+  }, 510);
 }
