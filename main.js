@@ -54,7 +54,7 @@ let state = {
       Team_Code: d.Team_Code,
       Team_Name: d.Team_Name,
       Games_Played: +d.Games_Played,
-      Minutes_Played: +d.Minutes_Played,
+      Minutes_Played: Math.round(+d.Minutes_Played),
       Field_Goals_Made: +d.Field_Goals_Made,
       Field_Goal_Attempts: +d.Field_Goal_Attempts,
       Three_Pointers_Made: +d.Three_Pointers_Made,

@@ -192,7 +192,6 @@ function init3() {
     const tipMouseover = function(event, d) {
   
       const tooltipHTML = `<b>Team Name:</b> ${state.Team_CodeToName[d.Team_Code]}<br/>
-                            <b>Team Code:</b> ${d.Team_Code}<br/>
                             <b>${vis3.variable.replaceAll("_"," ")}:</b> ${d[vis3.variable]}`;
   
       let colorArr = state.Team_Colors[d.Team_Code] ?
@@ -200,8 +199,8 @@ function init3() {
           ["black", "grey"];
   
       tooltip.html(tooltipHTML)
-        .style("left", (event.pageX - 150 + "px"))  
-        .style("top", (event.pageY - 70 + "px"))
+        .style("left", (event.pageX - 160 + "px"))  
+        .style("top", (event.pageY - 80 + "px"))
         .style("border", `${"#" + colorArr[0]} solid 0.2rem`) // Same border color as genre
         .style("outline", `1px solid ${"#" + colorArr[1]}`)
         .transition()
