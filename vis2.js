@@ -125,6 +125,60 @@ function init2() {
       .text(vis2.variable.replaceAll("_"," "))
 
 
+
+
+
+
+
+
+    // Tooltip Handling START #################################################
+  const tooltip = d3.select("#tooltip");
+
+  // Tooltip Mouseover 
+  const tipMouseover = function(event, d) {
+
+    const tooltipHTML = `<b>Player:</b> ${d.Player}<br/>
+                          <b>${vis2.variable.replaceAll("_"," ")}:</b> ${d[vis2.variable]}<br/>
+                          <b>Team:</b> ${d.Team_Name}`;
+
+    let colorArr = state.Team_Colors[d.Team_Code] ?
+        state.Team_Colors[d.Team_Code] :
+        ["black", "grey"];
+
+    tooltip.html(tooltipHTML)
+      .style("left", (event.pageX - 150 + "px"))  
+      .style("top", (event.pageY - 70 + "px"))
+      .style("border", `${"#" + colorArr[0]} solid 0.2rem`) // Same border color as genre
+      .style("outline", `1px solid ${"#" + colorArr[1]}`)
+      .transition()
+        .duration(100) 
+        .style("opacity", 1) 
+
+    d3.select(this)
+      .transition()
+      .duration(100)
+      .style("opacity", 1);
+  };
+
+  // Tooltip Mouseout
+  const tipMouseout = function(d) {
+      tooltip.transition()
+          .duration(200) 
+          .style("opacity", 0); // Make tooltip div invisible
+
+      d3.select(this)
+      .transition()
+      .duration(200)
+      .style("opacity", 0.5);
+  };
+
+// Tooltip Handling END #################################################
+
+
+
+
+
+
     // BAR NUMBERS
     vis2.svg.selectAll("text.vis2-bar-num")
         .data(vis2.top10)
@@ -167,6 +221,8 @@ function init2() {
                     })
                     .attr("stroke-width", "3px")
                     .attr("opacity", 0.5)
+                    .on("mouseover", tipMouseover)
+                    .on("mouseout", tipMouseout)
                 .call(enter => enter.transition()
                     .duration(500)
                     .attr("y", d => vis2.yScale(d[vis2.variable]) - 1)
@@ -183,4 +239,9 @@ function init2() {
                         .attr("opacity", 0))
                     .remove()
         );
-  }
+
+
+
+
+
+}

@@ -174,6 +174,72 @@ function init3() {
       .text(vis3.variable.replaceAll("_"," "))
 
 
+
+
+
+
+
+
+
+
+
+
+
+    // Tooltip Handling START #################################################
+    const tooltip = d3.select("#tooltip");
+
+    // Tooltip Mouseover 
+    const tipMouseover = function(event, d) {
+  
+      const tooltipHTML = `<b>Team Name:</b> ${state.Team_CodeToName[d.Team_Code]}<br/>
+                            <b>Team Code:</b> ${d.Team_Code}<br/>
+                            <b>${vis3.variable.replaceAll("_"," ")}:</b> ${d[vis3.variable]}`;
+  
+      let colorArr = state.Team_Colors[d.Team_Code] ?
+          state.Team_Colors[d.Team_Code] :
+          ["black", "grey"];
+  
+      tooltip.html(tooltipHTML)
+        .style("left", (event.pageX - 150 + "px"))  
+        .style("top", (event.pageY - 70 + "px"))
+        .style("border", `${"#" + colorArr[0]} solid 0.2rem`) // Same border color as genre
+        .style("outline", `1px solid ${"#" + colorArr[1]}`)
+        .transition()
+          .duration(100) 
+          .style("opacity", 1) 
+  
+      d3.select(this)
+        .transition()
+        .duration(100)
+        .style("opacity", 1);
+    };
+  
+    // Tooltip Mouseout
+    const tipMouseout = function(d) {
+        tooltip.transition()
+            .duration(200) 
+            .style("opacity", 0); // Make tooltip div invisible
+  
+        d3.select(this)
+        .transition()
+        .duration(200)
+        .style("opacity", 0.5);
+    };
+  
+  // Tooltip Handling END #################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
     // BAR NUMBERS
     vis3.svg.selectAll("text.vis3-bar-num")
         .data(vis3.teamRanks)
@@ -214,6 +280,8 @@ function init3() {
                     })
                     .attr("stroke-width", "3px")
                     .attr("opacity", 0.3)
+                    .on("mouseover", tipMouseover)
+                    .on("mouseout", tipMouseout)
                 .call(enter => enter.transition()
                     .duration(500)
                     .attr("width", d => vis3.xScale(d[vis3.variable]) - 30)),

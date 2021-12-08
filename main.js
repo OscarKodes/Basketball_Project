@@ -36,9 +36,11 @@ let state = {
   d3.csv("team_colors.csv").then(data => {
 
     state.Team_Colors = {};
+    state.Team_CodeToName = {};
 
     data.map(d => {
         state.Team_Colors[d.Team_Code] = [d.color1, d.color2]
+        state.Team_CodeToName[d.Team_Code] = d.Team_Name
       }
     )
   });
