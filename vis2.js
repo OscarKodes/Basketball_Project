@@ -90,7 +90,6 @@ function init2() {
     vis2.svg = d3.select("#vis-players svg")
         .attr("height", height)
         .attr("width", width)
-        .attr("transform", `translate(${-64}, ${0})`)
 
     draw2(); // calls the draw function
   }
