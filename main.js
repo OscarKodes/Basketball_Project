@@ -41,7 +41,6 @@ let state = {
         state.Team_Colors[d.Team_Code] = [d.color1, d.color2]
       }
     )
-    console.log(state.Team_Colors);
   });
 
   d3.csv('merged_data.csv', d => {
@@ -69,11 +68,11 @@ let state = {
       Steals: +d.Steals,
       Blocks: +d.Blocks,
       Total_Points_Made: +d.Total_Points_Made,
-      "Salary_(Millions)": Math.round(+d.Salary / 1000000),
-      "Cost_Per_Point_(Thousands)": Math.round(+d.Cost_Per_Point / 1000),
-      "Free_Throw_Accuracy %": Math.round(+d.Free_Throw_Accuracy * 10),
-      "Field_Goal_Accuracy %": Math.round(+d.Field_Goal_Accuracy * 10),
-      "Three_Pointers_Accuracy %": Math.round(+d.Three_Pointers_Accuracy * 10),
+      "Salary_(Millions)": Math.round(+d.Salary * 2 / 1000000) / 2,
+      "Cost_Per_Point_(Thousands)": Math.round(+d.Cost_Per_Point * 2 / 1000) / 2,
+      "Free_Throw_Accuracy %": Math.round(+d.Free_Throw_Accuracy * 100),
+      "Field_Goal_Accuracy %": Math.round(+d.Field_Goal_Accuracy * 100),
+      "Three_Pointers_Accuracy %": Math.round(+d.Three_Pointers_Accuracy * 100),
       Avg_minutes_per_game: Math.round(+d.avg_minutes_per_game),
     }
   })

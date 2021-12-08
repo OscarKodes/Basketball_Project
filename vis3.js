@@ -3,9 +3,11 @@
 
 function updateTeamRanks () {
 
+    // Get all players for the year
     vis3.allPlayersInYear = state.data
         .filter(d => d.Year === vis3.Year);
 
+    // Create object with team codes as keys
     vis3.teamObj = {};
 
     state.data.map(d => {
@@ -16,15 +18,33 @@ function updateTeamRanks () {
         };
     });
 
+    // Add each player's score to their team's score in the object
     vis3.allPlayersInYear.map(d => vis3.teamObj[d.Team_Code] += d[vis3.variable]);
 
-    dataArr = Object.keys(vis3.teamObj).map(key => {
+    // Create array of individual objects for each team and score
+    dataArr = Object.keys(vis3.teamObj).map(NBA_Code => {
 
-        let score = vis3.teamObj[key];
+        let score = vis3.teamObj[NBA_Code];
 
-        return {Team_Code: key, [vis3.variable] : score}
+        // If the sum total variable needs to be averaged for the team
+        if (vis3.variable[vis3.variable.length - 1] === "%" || 
+            ["Avg ", "Cost"].includes(vis3.variable.slice(0, 4))) {
+            let playerCount = vis3.allPlayersInYear
+                .filter(d => d.Team_Code === NBA_Code)
+                .length;
+
+            if (playerCount > 0) {
+                score = Math.round((score / playerCount) * 2) / 2;
+                console.log(playerCount);
+            }
+
+            
+        }
+
+        return {Team_Code: NBA_Code, [vis3.variable] : score}
     });
 
+    // Filter out teams with scores of 0, and sort them in score order
     vis3.teamRanks = dataArr
         .filter(d => d[vis3.variable] !== 0)
         .sort((a, b) => b[vis3.variable] - a[vis3.variable]);

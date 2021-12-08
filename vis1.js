@@ -134,7 +134,7 @@
     
     const player1data = vis1.bothPlayersData.filter(d => d.Player === vis1.player1);
     const player2data = vis1.bothPlayersData.filter(d => d.Player === vis1.player2);
-    console.log(player1data);
+
     // + DRAW LINE AND/OR AREA
     vis1.svg.selectAll(".line1")
       .data([player1data]) // data needs to take an []
