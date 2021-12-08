@@ -102,7 +102,7 @@ function init3() {
 
         vis3.variable = e.target.value;
 
-        console.log(e.target.value)
+        disableFor500ms();
         draw3();
     });
 
@@ -110,7 +110,7 @@ function init3() {
 
         vis3.Year = Number(e.target.value);
   
-        console.log(e.target.value)
+        disableFor500ms();
         draw3();
     });
 
@@ -290,6 +290,11 @@ function init3() {
                     .duration(500)
                     .attr("y", d => vis3.yScale(d.Team_Code))
                     .attr("width", d => vis3.xScale(d[vis3.variable]) - 30)),
+            exit => exit
+                    .call(exit => exit.transition()
+                        .duration(500)
+                        .attr("opacity", 0))
+                    .remove()
         )
         ;
   }

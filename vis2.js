@@ -50,15 +50,15 @@ function init2() {
 
         vis2.variable = e.target.value;
 
-        console.log(e.target.value)
+        disableFor500ms();
         draw2();
     });
 
     selectYear.on("change", e => {
 
         vis2.Year = Number(e.target.value);
-  
-        console.log(e.target.value)
+
+        disableFor500ms();
         draw2();
     });
 

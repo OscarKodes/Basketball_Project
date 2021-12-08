@@ -173,3 +173,7 @@ select {
   border-bottom-right-radius: 0;
   opacity: 0;
 }
+
+.disabled-mouse {
+  pointer-events: none;
+}

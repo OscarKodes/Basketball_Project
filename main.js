@@ -86,3 +86,12 @@ let state = {
       init2();
       init3();
     });
+
+
+function disableFor500ms() {
+  document.querySelector("#body-wrapper").classList.add("disabled-mouse");
+
+  setTimeout(() => {
+    document.querySelector("#body-wrapper").classList.remove("disabled-mouse");
+  }, 500);
+}
