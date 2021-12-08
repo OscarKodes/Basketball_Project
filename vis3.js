@@ -187,29 +187,41 @@ function init3() {
    
     // BAR RECTANGLES
     vis3.svg.selectAll("rect.vis3-bar")
-        .data(vis3.teamRanks)
-        .join("rect")
-        .attr("class", "vis3-bar")
-        .attr("width", d => vis3.xScale(d[vis3.variable]) - 30)
-        .attr("height", vis3.yScale.bandwidth())
-        .attr("x", margin.left + 2 + 50)
-        .attr("y", d => vis3.yScale(d.Team_Code))
-        .attr("fill", d => {
-
-            let colorArr = state.Team_Colors[d.Team_Code] ?
-                    state.Team_Colors[d.Team_Code] :
-                    ["black", "grey"];
-
-            return "#" + colorArr[0];
-        })
-        .attr("stroke", d => {
-
-            let colorArr = state.Team_Colors[d.Team_Code] ?
-                    state.Team_Colors[d.Team_Code] :
-                    ["black", "grey"];
-
-            return "#" + colorArr[1];
-        })
-        .attr("stroke-width", "3px")
-        .attr("opacity", 0.3);
+        .data(vis3.teamRanks, d => d.Team_Code)
+        .join(
+            enter => enter
+                .append("rect")
+                    .attr("class", "vis3-bar")
+                    .attr("width", 0)
+                    .attr("height", vis3.yScale.bandwidth())
+                    .attr("x", margin.left + 2 + 50)
+                    .attr("y", d => vis3.yScale(d.Team_Code))
+                    .attr("fill", d => {
+            
+                        let colorArr = state.Team_Colors[d.Team_Code] ?
+                                state.Team_Colors[d.Team_Code] :
+                                ["black", "grey"];
+            
+                        return "#" + colorArr[0];
+                    })
+                    .attr("stroke", d => {
+            
+                        let colorArr = state.Team_Colors[d.Team_Code] ?
+                                state.Team_Colors[d.Team_Code] :
+                                ["black", "grey"];
+            
+                        return "#" + colorArr[1];
+                    })
+                    .attr("stroke-width", "3px")
+                    .attr("opacity", 0.3)
+                .call(enter => enter.transition()
+                    .duration(500)
+                    .attr("width", d => vis3.xScale(d[vis3.variable]) - 30)),
+            update => update
+                .call(update => update.transition()
+                    .duration(500)
+                    .attr("y", d => vis3.yScale(d.Team_Code))
+                    .attr("width", d => vis3.xScale(d[vis3.variable]) - 30)),
+        )
+        ;
   }
