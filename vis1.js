@@ -189,4 +189,34 @@
             .attr("stroke-width", "0"))
             .remove()
           );
+
+      const dots = vis1.svg.selectAll("circle.dot")
+          .data(player1data.concat(player2data), d => [d.Player, d.Year])
+          .join(
+            enter => enter
+              .append("circle")
+                .attr("class", "dot")
+                .attr("transform", d => `translate(${vis1.xScale(d.Year) + 50}, 
+                                        ${vis1.yScale(d[vis1.variable])})`)
+                .attr("r", 0)
+                .attr("fill", "white")
+                .attr("stroke", "black")
+                .attr("stroke-width", 3)
+                .attr("opacity", "0.4")
+              .call(enter => enter.transition()
+                .duration(500)
+                .attr("r", 6)
+                .attr("opacity", "1")
+                ),
+            update => update
+              .call(update => update.transition()
+                .duration(1000)
+                .attr("transform", d => `translate(${vis1.xScale(d.Year) + 50}, 
+                                        ${vis1.yScale(d[vis1.variable])})`)),
+            exit => exit
+              .call(exit => exit.transition()
+                .duration(500)
+                .attr("r", 0))
+                .remove()
+          );
   }
