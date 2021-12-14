@@ -34,7 +34,7 @@ let state = {
     data: []
   };
 
-  d3.csv("team_colors.csv").then(data => {
+  d3.csv("../datasets/team_colors.csv").then(data => {
 
     state.Team_Colors = {};
     state.Team_CodeToName = {};
@@ -46,7 +46,7 @@ let state = {
     )
   });
 
-  d3.csv('merged_data.csv', d => {
+  d3.csv("../datasets/merged_data.csv", d => {
     // use custom initializer to reformat the data the way we want it
     // ref: https://github.com/d3/d3-fetch#dsv
     return {
