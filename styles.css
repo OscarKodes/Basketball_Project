@@ -49,15 +49,6 @@ h1 {
 
 @media only screen and (max-width: 1000px) {
   .nav-link  {
-    color: white;
-    text-decoration: none;
-    background-color: #333;
-    border: 2px solid black;
-    border-radius: .5rem;
-    display: block;
-    width: 65%;
-    /* height: 5rem; */
-    margin: 2rem auto;
     padding: .75rem;
     font-size: 1rem;
   }
@@ -65,8 +56,16 @@ h1 {
 
 .signature {
   text-decoration: none;
-  color: #AAA;
+  color: #999;
   margin: 1rem .25rem;
+}
+
+p.signature {
+  font-weight: 200;
+}
+
+a.signature:hover {
+  color: white;
 }
 
 .fa-basketball-ball {
