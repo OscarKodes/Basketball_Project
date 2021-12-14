@@ -63,7 +63,15 @@ h1 {
   }
 }
 
+.signature {
+  text-decoration: none;
+  color: #AAA;
+  margin: 1rem .25rem;
+}
 
+.fa-basketball-ball {
+  color: rgba(255, 166, 0, 0.5);
+}
 
 .nav-link:hover {
   background-color: #AAA;
