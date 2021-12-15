@@ -20,13 +20,13 @@ let vis1 = {
 
 let vis2 = {
     variable: "Assists",
-    Year: 2015,
+    Year: 2000,
     top10: []
 };
 
 let vis3 = {
     variable: "Assists",
-    Year: 2015
+    Year: 2000
 };
 
 /* APPLICATION STATE */
